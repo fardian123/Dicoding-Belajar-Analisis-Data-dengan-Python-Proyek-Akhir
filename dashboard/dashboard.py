@@ -2,14 +2,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
-
-import streamlit as st
 import pandas as pd
 
 # Load Dataset
 @st.cache_data
 def load_data():
-    bike_data = pd.read_csv("day.csv")
+    bike_data = pd.read_csv("https://raw.githubusercontent.com/fardian123/Dicoding-Belajar-Analisis-Data-dengan-Python-Proyek-Akhir/main/dashboard/day.csv")
     bike_data.loc[bike_data['holiday'] == 0, 'workingday'] = 1
     bike_data['dteday'] = pd.to_datetime(bike_data['dteday'])
     bike_data['season'] = bike_data['season'].map({1: 'Spring', 2: 'Summer', 3: 'Fall', 4: 'Winter'})
