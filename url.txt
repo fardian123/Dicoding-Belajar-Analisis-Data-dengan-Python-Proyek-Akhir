@@ -1,0 +1,2 @@
+dashboard url: https://bike-sharing-fardian-zahri.streamlit.app/
+git repo: https://github.com/fardian123/Dicoding-Belajar-Analisis-Data-dengan-Python-Proyek-Akhir
