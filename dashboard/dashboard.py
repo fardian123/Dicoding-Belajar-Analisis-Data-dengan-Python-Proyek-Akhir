@@ -7,7 +7,7 @@ import pandas as pd
 # Load Dataset
 @st.cache_data
 def load_data():
-    bike_data = pd.read_csv("https://raw.githubusercontent.com/fardian123/Dicoding-Belajar-Analisis-Data-dengan-Python-Proyek-Akhir/main/dashboard/day.csv")
+    bike_data = pd.read_csv("day.csv")
     bike_data.loc[bike_data['holiday'] == 0, 'workingday'] = 1
     bike_data['dteday'] = pd.to_datetime(bike_data['dteday'])
     bike_data['season'] = bike_data['season'].map({1: 'Spring', 2: 'Summer', 3: 'Fall', 4: 'Winter'})
@@ -63,7 +63,7 @@ bike_data_by_days_melt = pd.melt(bike_data_by_days, id_vars="weekday", value_var
 
 st.header("Peminjaman Sepeda Berdasarkan Hari")
 plt.figure(figsize=(10,6))
-sns.barplot(x="weekday", y="Count", hue="Tipe Pengguna", data=bike_data_by_days_melt, palette=['blue', 'orange'])
+sns.barplot(x="weekday", y="Count", hue="Tipe Pengguna", data=bike_data_by_days_melt, palette="Paired")
 plt.title("Total Peminjaman Sepeda Berdasarkan Hari (Pengguna Terdaftar dan Kasual)")
 plt.xlabel("Hari")
 plt.ylabel("Jumlah Sepeda Terpinjam")
@@ -97,7 +97,7 @@ bike_data_by_workingdays = filtered_data.groupby(by="workingday").agg({
 bike_data_by_workingdays_melt = pd.melt(bike_data_by_workingdays, id_vars="workingday", value_vars=["registered", "casual"], 
                            var_name="Tipe Pengguna", value_name="Count")
 plt.figure(figsize=(8, 6))
-bar_plot = sns.barplot(x="workingday", y="Count", data=bike_data_by_workingdays_melt,palette=['blue', 'orange'],hue="Tipe Pengguna")
+bar_plot = sns.barplot(x="workingday", y="Count", data=bike_data_by_workingdays_melt,palette="Paired",hue="Tipe Pengguna")
 plt.title('Perbandingan jumlah peminjaman sepeda antara hari kerja dan hari libur')
 bar_plot.set_xticklabels(['Holyday', 'Working Day'])
 st.pyplot(plt)
@@ -119,7 +119,7 @@ bike_data_by_weathersit_melt = pd.melt(bike_data_by_weathersit,
                                        value_name="Count")
 
 plt.figure(figsize=(10, 6))
-sns.barplot(x="weathersit", y='Count', hue="Tipe Pengguna", data=bike_data_by_weathersit_melt, palette=['blue', 'orange'])
+sns.barplot(x="weathersit", y='Count', hue="Tipe Pengguna", data=bike_data_by_weathersit_melt, palette="Paired")
 plt.title(f'Peminjaman Sepeda pada Kondisi Cuaca')
 plt.xlabel('Cuaca')
 plt.ylabel('Jumlah Peminjaman Sepeda')
@@ -145,7 +145,7 @@ bike_data_by_temp_melt = pd.melt(bike_data_by_temp,
                                  var_name="Tipe Pengguna", 
                                  value_name="Count")
 plt.figure(figsize=(10, 6))
-sns.barplot(x="temp_group", y='Count', hue="Tipe Pengguna", data=bike_data_by_temp_melt, palette=['blue', 'orange'])
+sns.barplot(x="temp_group", y='Count', hue="Tipe Pengguna", data=bike_data_by_temp_melt, palette="Paired")
 plt.title('Peminjaman Sepeda Berdasarkan Kondisi Suhu')
 plt.xlabel('Suhu')
 plt.ylabel('Jumlah Peminjaman Sepeda')
@@ -169,5 +169,6 @@ plt.xlabel('Suhu')
 plt.ylabel('Jumlah Peminjaman Sepeda')
 plt.legend()
 st.pyplot(plt)
+
 
 
